@@ -7,9 +7,9 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
-                            validators=[DataRequired(), Length(min=2, max=20)])
+                            validators=[Length(min=2, max=20)])
     email = StringField('Email',
-                            validators=[DataRequired(), Email()])
+                            validators=[Email()])
     password = PasswordField('Password',
                             validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
@@ -20,11 +20,16 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('That username is taken. Please choose a different one.')
+        if username is None:
+            raise ValidationError('Is empty')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('That email is taken. Please choose a different one.')
+        if email is None:
+            raise ValidationError('Is empty')
+
 
 class LoginForm(FlaskForm):
     email = StringField('Email',
@@ -39,7 +44,8 @@ class UpdateAccountForm(FlaskForm):
                             validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                             validators=[DataRequired(), Email()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+#    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture')
     submit = SubmitField('Update')
 
     def validate_username(self, username):
