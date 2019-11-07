@@ -8,3 +8,5 @@ $env:FLASK_DEBUG=1
 
 Get-ChildItem env:
 Get-ChildItem env:FLASK_APP
+
+emailsender240
