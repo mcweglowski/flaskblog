@@ -1,9 +1,9 @@
-from flaskblog.models import User
-from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from flask_login import current_user
+from flaskblog.models import User
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
@@ -30,7 +30,6 @@ class RegistrationForm(FlaskForm):
         if email is None:
             raise ValidationError('Is empty')
 
-
 class LoginForm(FlaskForm):
     email = StringField('Email',
                             validators=[DataRequired(), Email()])
@@ -44,7 +43,6 @@ class UpdateAccountForm(FlaskForm):
                             validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                             validators=[DataRequired(), Email()])
-#    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     picture = FileField('Update Profile Picture')
     submit = SubmitField('Update')
 
@@ -62,11 +60,6 @@ class UpdateAccountForm(FlaskForm):
         if user:
             raise ValidationError('That email is taken. Please choose a different one.')
 
-class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Post')
-
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
@@ -82,3 +75,4 @@ class ResetPasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                             validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
