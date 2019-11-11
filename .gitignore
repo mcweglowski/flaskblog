@@ -106,6 +106,6 @@ venv.bak/
 .vscode/
 
 # storage
-flaskblog.db
+*.db
 /flaskblog/static/profile_pics/
 !*/flaskblog/static/profile_pics/default.jpg
