@@ -1,6 +1,6 @@
 class Config:
     SECRET_KEY = '1a4d1aebb222cd6d0dd481f4f8def584'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///../flaskblog.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///../flask_blog.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = 'False'
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
