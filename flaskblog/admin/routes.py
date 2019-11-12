@@ -8,4 +8,9 @@ admin = Blueprint('admin', __name__)
 @login_required
 def users():
     all_users = User.query.all()
-    return render_template('manage_users.html', title='Manage Users', users=all_users)
+    return render_template('admin_users.html', title='Manage Users', users=all_users)
+
+@admin.route('/users/<int:user_id>/update', methods=['POST', 'GET'])
+@login_required
+def manage_user():
+    pass
