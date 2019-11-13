@@ -1,3 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <h3 class="article-title">{{ form.username.data }}[{{form.email.data}}]</h3>
+                <div class="form-check">
+                    {{ form.is_active(class="form-check-input") }}
+                    {{ form.is_active.label(class="form-check-label") }}
+                </div>
+                <div class="form-check">
+                    {{ form.is_banned(class="form-check-input") }}
+                    {{ form.is_banned.label(class="form-check-label") }}
+                    </div>
+                </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
 {% endblock content %}

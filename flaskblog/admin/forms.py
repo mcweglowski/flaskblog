@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, BooleanField
+from wtforms import IntegerField, StringField, BooleanField, SubmitField
 
 class ManageUserForm(FlaskForm):
     id = IntegerField('Id')
@@ -7,3 +7,4 @@ class ManageUserForm(FlaskForm):
     email = StringField('Email')
     is_active = BooleanField('Active')
     is_banned = BooleanField('Banned')
+    submit = SubmitField('Save')
