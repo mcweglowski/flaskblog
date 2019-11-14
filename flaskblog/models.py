@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean, nullable=True, default=True)
     is_banned = db.Column(db.Boolean, nullable=True, default=False)
     posts = db.relationship('Post', backref='author', lazy=True)
+    roles = db.relationship('Role', secondary='user_roles')
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -43,3 +44,12 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+class Role(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+
+class UserRoles(db.Model):
+    user_roles_id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    role_id = db.Column(db.Integer(), db.ForeignKey('role.id'))
