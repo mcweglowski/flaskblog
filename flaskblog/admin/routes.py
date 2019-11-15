@@ -3,11 +3,13 @@ from flaskblog import db
 from flaskblog.admin.forms import ManageUserForm
 from flaskblog.models import User
 from flask_login import login_required
+from flask_user import roles_required
 
 admin = Blueprint('admin', __name__)
 
 @admin.route('/users')
 @login_required
+@roles_required('admin')
 def users():
     all_users = User.query.all()
     return render_template('admin_users.html', title='Manage Users', users=all_users)
