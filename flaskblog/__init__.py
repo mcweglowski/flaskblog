@@ -40,11 +40,4 @@ def create_app(config_class=Config):
     app.register_blueprint(errors)
     app.register_blueprint(admin)
 
-    from flaskblog.static_data import roles
-    from flaskblog.static_data import user
-    from flaskblog.static_data import userrole
-    roles.seed(app, db)
-    user.seed(app, db, bcrypt)
-    userrole.seed(app, db)
-
     return app
