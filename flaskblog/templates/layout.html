@@ -70,17 +70,16 @@
                             </ul>
                         </p>
                     </div>
-                    <div class="content-section">
-                        <h3>Administration</h3>
-                        <p class='text-muted'>You can put any information here you'd like.
-                            <ul>
-                                <li>Latest Posts</li>
-                                <li>Announcements</li>
-                                <li>Callendars</li>
-                                <li>etc</li>
-                            </ul>
-                        </p>
+                    {% if current_user.is_administrator %}
+                        <div class="content-section">
+                            <h3>Administration</h3>
+                            <p class='text-muted'>You can put any information here you'd like.
+                                <ul>
+                                    <li>Manage Users</li>
+                                </ul>
+                            </p>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </main>

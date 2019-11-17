@@ -38,6 +38,9 @@ class User(db.Model, UserMixin):
     def has_roles(self, *args):
         return set(args).issubset({role.name for role in self.roles})
 
+    def is_administrator(self):
+        return self.has_roles({"admin"})
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)

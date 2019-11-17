@@ -16,6 +16,7 @@ def users():
 
 @admin.route('/users/<int:user_id>/update', methods=['POST', 'GET'])
 @login_required
+@roles_required('admin')
 def manage_user(user_id):
     user = User.query.get_or_404(user_id)
     form = ManageUserForm()
