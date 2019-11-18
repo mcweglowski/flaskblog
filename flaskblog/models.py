@@ -38,8 +38,9 @@ class User(db.Model, UserMixin):
     def has_roles(self, *args):
         return set(args).issubset({role.name for role in self.roles})
 
+    @property
     def is_administrator(self):
-        return self.has_roles({"admin"})
+        return {"admin"}.issubset({role.name for role in self.roles})
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
